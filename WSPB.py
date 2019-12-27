@@ -82,5 +82,8 @@ for i in range(len(assignments)):
         company.append(m.group(1))
     else:
         company.append("")
-    print(company[i])
+    print(company[i],"\n")
     #print (temp)
+
+
+    
