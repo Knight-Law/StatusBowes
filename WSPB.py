@@ -8,17 +8,11 @@ import os
 import sys
 
 try:
-    fp = open(os.path.join(sys.path[0], 'user.txt'), 'r')
-    user = fp.read()
+    fp = open(os.path.join(sys.path[0], 'config.txt'), 'r')
+    user = fp.readline().rstrip('\n')
+    userpass = fp.readline().rstrip('\n')
 finally:
     fp.close()
-
-try:
-    fp = open(os.path.join(sys.path[0], 'password.txt'), 'r')
-    userpass = fp.read()
-finally:
-    fp.close()
-
 
 workorders = []
 tracking = []
