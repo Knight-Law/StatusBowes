@@ -1,2 +1,2 @@
 # StatusBowes
- Project to automate organization of workmarket assignments
+ Project to automate organization of assignments
