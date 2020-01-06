@@ -11,6 +11,7 @@ try:
     fp = open(os.path.join(sys.path[0], 'config.txt'), 'r')
     user = fp.readline().rstrip('\n')
     userpass = fp.readline().rstrip('\n')
+    site = fp.readline().rstrip('\n')
 finally:
     fp.close()
 
@@ -21,7 +22,7 @@ contact = []
 company = []
 
 browser = webdriver.Chrome('C:/Program Files (x86)/Google/Chrome/Application/chromedriver.exe')
-browser.get ('https://www.workmarket.com/login')
+browser.get ('https://www.{}.com/login'.format(site))
 time.sleep(3)
 loginUser = browser.find_element_by_css_selector('#login-email')
 loginUser.send_keys(user)
@@ -30,7 +31,7 @@ password.send_keys(userpass)
 button = browser.find_element_by_css_selector('#login_page_button > span')
 button.click()
 time.sleep(3)
-browser.get('https://www.workmarket.com/assignments#status/active/managings')
+browser.get('https://www.{}.com/assignments#status/active/managings'.format(site))
 #time.sleep(1)
 #browser.find_element_by_css_selector("select#assignment_list_size > option[value='50']").click()
 time.sleep(3)
@@ -39,8 +40,8 @@ soup = BeautifulSoup(browser.page_source,features="html5lib")
 
 
 for link in soup.find_all('a', href=re.compile("/assignments/details/")):
-    print ('https://www.workmarket.com{}'.format(link['href']))
-    assignments.append('https://www.workmarket.com{}'.format(link['href']))
+    print ('https://www.{}.com{}'.format(site,link['href']))
+    assignments.append('https://www.{}.com{}'.format(site,link['href']))
 
 for i in range(len(assignments)):
     browser.get(assignments[i])
